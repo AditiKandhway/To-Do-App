@@ -18,7 +18,8 @@ export default {
 .button-done-sorting{
   position:fixed;
   bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
+  left:59%;
+  right:40%;
+  transform:translate(-50%);
 }
 </style>
