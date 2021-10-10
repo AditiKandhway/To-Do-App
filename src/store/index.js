@@ -107,13 +107,17 @@ export default new Vuex.Store({
       },
       updateTask({commit},payload)
       {
+        db.collection('tasks').doc({id:payload.id}).update({
+            title:payload.new_title
+        }).then(()=>{
           commit('updateTask',payload);
           commit('showSnackbar','Task Updated');
+        })
       },
       updateTaskDate({commit},payload)
       {
-          commit('updateTaskDate',payload);
-          commit('showSnackbar','Date Updated');
+            commit('updateTaskDate',payload);
+            commit('showSnackbar','Date Updated');
       },
       getTasks({commit})
       {
