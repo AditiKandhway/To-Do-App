@@ -100,6 +100,10 @@ import LiveDateTime from '@/components/Tools/Live-Date-Time.vue';
       Snackbar:snackbar,
       Search:Search,
       LiveDateTime:LiveDateTime
+    },
+    mounted()
+    {
+      this.$store.dispatch('getTasks');
     }
   }
 </script>

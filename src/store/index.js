@@ -30,7 +30,7 @@ export default new Vuex.Store({
         show:false,
         text:''
     },
-    sorting:true
+    sorting:false
   },
   mutations: {
     addTask(state,new_tasks)
@@ -80,6 +80,10 @@ export default new Vuex.Store({
     hidesnackbar(state)
     {
         state.snackbar.show=false
+    },
+    setTask(state,tasks)
+    {
+        state.tasks=tasks
     }
   },
   actions: {
@@ -110,6 +114,13 @@ export default new Vuex.Store({
       {
           commit('updateTaskDate',payload);
           commit('showSnackbar','Date Updated');
+      },
+      getTasks({commit})
+      {
+          db.collection('tasks').get().then(tasks=>{
+              console.log(tasks);
+              commit('setTask',tasks)
+          })
       }
   },
   getters:{
