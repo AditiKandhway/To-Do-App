@@ -4,13 +4,14 @@
     <v-navigation-drawer
       v-model="drawer"
       :mobile-breakpoint="768"
+      fixed
       app
     >
     <v-img
       height="170"
       class="pa-4 pt-7"
       src="@/assets/mountains.jpg"
-      gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+      gradient="to top right, rgba(19,84,122,.9), rgba(128,208,199,.9)"
       >
     <v-avatar size="70" class="mb-2">
         <img
@@ -51,18 +52,17 @@
       color="primary"
       dark
       src="@/assets/mountains.jpg"
-      shrink-on-scroll
       prominent
-      height="170"
+      :height="$route.path==='/'?'238':'170'"
     >
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+          gradient="to top right, rgba(19,84,122,.9), rgba(128,208,199,.9)"
         ></v-img>
       </template>
       
-      <v-container class="pa-0 heading-style">
+      <v-container class="pa-0 heading-style position" >
          <v-row>
               <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
                  <v-spacer></v-spacer>
@@ -75,6 +75,9 @@
           </v-row>
           <v-row >
              <LiveDateTime/>
+          </v-row>
+          <v-row v-if="$route.path==='/'">
+             <FieldAddTasks/>
           </v-row>
       </v-container>
     </v-app-bar>
@@ -89,6 +92,7 @@
 import snackbar from '@/components/shared/Snackbar.vue';
 import Search from '@/components/Tools/Search.vue';
 import LiveDateTime from '@/components/Tools/Live-Date-Time.vue';
+import FieldAddTasks from '@/components/Todo/FieldAddTasks.vue';
   export default {
     data: () => ({ drawer: null,
     items: [
@@ -99,7 +103,8 @@ import LiveDateTime from '@/components/Tools/Live-Date-Time.vue';
     components:{
       Snackbar:snackbar,
       Search:Search,
-      LiveDateTime:LiveDateTime
+      LiveDateTime:LiveDateTime,
+      FieldAddTasks:FieldAddTasks
     },
     mounted()
     {
@@ -111,5 +116,8 @@ import LiveDateTime from '@/components/Tools/Live-Date-Time.vue';
 <style scoped>
 .heading-style{
   max-width:none !important
+}
+.position{
+  position: fixed !important;
 }
 </style>

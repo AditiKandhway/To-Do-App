@@ -85,7 +85,11 @@ export default {
             icon:'mdi-drag-horizontal-variant',
             click()
             {
+                if(!this.$store.state.search)
                 this.$store.commit('toggleSort');
+                else{
+                    this.$store.commit('showSnackbar','Can not sort')
+                }
             }
         }
       ],

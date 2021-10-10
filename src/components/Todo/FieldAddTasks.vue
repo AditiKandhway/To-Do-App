@@ -1,15 +1,15 @@
 <template>
     <v-text-field
         outlined
-        label="Add task"
+        placeholder="Add task"
         v-model="newAddedTitle"
         @keyup.enter="addtask"
         hide-details
         clearable
+        class="field-add-task pa-3 mr-8"
         >
          <template v-slot:append>
               <v-icon 
-              color="primary"
               @click="addtask"
               :disabled="newTaskInvalid"
               >mdi-plus</v-icon>
@@ -43,7 +43,11 @@ export default{
               this.newAddedTitle='';
             }
         }
-    }
+    },
 }
 </script>
 
+<style scoped>
+
+
+</style>

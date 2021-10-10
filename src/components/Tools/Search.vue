@@ -1,6 +1,6 @@
 <template>
    <v-text-field
-        class="expanding-search mt-2"
+        class="expanding-search mt-2 mr-10"
         :value="$store.state.search"
         @blur="searchField=true"
         @focus="searchField=false"
@@ -8,6 +8,7 @@
         :class="{'closed':searchField && !$store.state.search}"
         placeholder="Search"
         filled
+        :disabled="$store.state.sorting"
         prepend-inner-icon="mdi-magnify"
         dense
         clearable

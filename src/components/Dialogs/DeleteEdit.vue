@@ -67,6 +67,7 @@ export default {
           this.$store.dispatch('updateTask',payload);
        }
        this.$emit('close');
+       this.$vuetify.goTo(0,{duration:0})
      }
   }
 }

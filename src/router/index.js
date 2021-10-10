@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import About from '../views/About.vue';
-
+import goTo from 'vuetify/es5/services/goto'
 Vue.use(VueRouter)
 
 
@@ -28,5 +28,9 @@ const router=new VueRouter({
 router.beforeEach((to,from,next)=>{
     document.title=`To Do App -- ${to.name}`
     next()
+})
+router.afterEach((to,from,next)=>{
+    console.log(to,from,next)
+    goTo(0,{duration:0})
 })
 export default router
