@@ -121,7 +121,16 @@ export default new Vuex.Store({
               console.log(tasks);
               commit('setTask',tasks)
           })
-      }
+      },
+      doneTask({state,commit},id)
+      {
+          let task=state.tasks.filter(task=>task.id===id)[0];
+          db.collection('tasks').doc({id:id}).update({
+              done:!task.done
+          }).then(()=>{
+            commit('doneTask',id)
+          })
+      },
   },
   getters:{
      taskFiltered(state)  {
