@@ -102,8 +102,10 @@ export default new Vuex.Store({
       },
       deleteTask({commit},id)
       {
-          commit('deleteTask',id);
-          commit('showSnackbar','Task Deleted');
+          db.collection('tasks').doc({id:id}).delete().then(()=>{
+            commit('deleteTask',id);
+            commit('showSnackbar','Task Deleted');
+          })
       },
       updateTask({commit},payload)
       {
@@ -116,8 +118,13 @@ export default new Vuex.Store({
       },
       updateTaskDate({commit},payload)
       {
-            commit('updateTaskDate',payload);
-            commit('showSnackbar','Date Updated');
+           console.log(payload.new_date);
+            db.collection('tasks').doc({id:payload.id}).update({
+                duedate:payload.new_date
+            }).then(()=>{
+                commit('updateTaskDate',payload);
+                commit('showSnackbar','Date Updated');
+            })
       },
       getTasks({commit})
       {
